@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="718.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.summer.view.LoginController">
+   <children>
+      <Circle fill="#ffe52194" layoutX="153.0" layoutY="90.0" radius="183.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Circle fill="#fbff2194" layoutX="321.0" layoutY="61.0" radius="168.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <Circle fill="#ffe12197" layoutX="36.0" layoutY="177.0" radius="177.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+      <TextField fx:id="storeCodeField" layoutX="473.0" layoutY="299.0" prefHeight="30.0" prefWidth="160.0" />
+      <PasswordField fx:id="passwordField" layoutX="473.0" layoutY="339.0" prefHeight="30.0" prefWidth="160.0" />
+      <Text fontSmoothingType="LCD" layoutX="390.0" layoutY="317.0" strokeType="OUTSIDE" strokeWidth="0.0" text="StoreCode" wrappingWidth="78.630859375">
+         <font>
+            <Font name="JetBrains Mono Thin" size="14.0" />
+         </font></Text>
+      <Button fx:id="loginBtn" layoutX="390.0" layoutY="389.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="245.0" text="Login">
+         <font>
+            <Font name="JetBrains Mono Thin" size="14.0" />
+         </font></Button>
+      <Text fontSmoothingType="LCD" layoutX="390.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+         <font>
+            <Font name="JetBrains Mono Thin" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

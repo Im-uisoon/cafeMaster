@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.summer.view.StoreDashboardController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="10.0" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+            <Label fx:id="storeCodeLabel" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Button onAction="#showSummaryView" prefHeight="35.0" prefWidth="100.0" text="매장요약" />
+            <Button onAction="#showStockView" prefHeight="35.0" prefWidth="100.0" text="재고조회" />
+            <Button onAction="#showStockRequest" prefHeight="35.0" prefWidth="100.0" text="발주요청" />
+            <Button onAction="#showDiscardManagement" prefHeight="35.0" prefWidth="100.0" text="폐기관리" />
+            <Button onAction="#logout" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="로그아웃" />
+        </HBox>
+    </top>
+    <center>
+        <VBox fx:id="contentArea" />
+    </center>
+</BorderPane>

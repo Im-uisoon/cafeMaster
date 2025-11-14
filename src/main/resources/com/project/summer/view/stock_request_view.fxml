@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="718.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.summer.view.StockRequestViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        </padding>
+        <children>
+            <!-- 왼쪽: 요청 현황 -->
+            <VBox prefHeight="638.0" prefWidth="451.0" spacing="10.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10;" HBox.hgrow="NEVER">
+                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="608.0" prefWidth="429.0" VBox.vgrow="ALWAYS">
+                    <items>
+                        <VBox prefHeight="290.0" prefWidth="429.0" spacing="10.0">
+                            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="요청 현황" />
+                            <TableView fx:id="requestStatusTableView" prefHeight="270.0" prefWidth="429.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="requestIdColumn" prefWidth="74.0" text="요청번호" />
+                                    <TableColumn fx:id="requestTimeColumn" prefWidth="160.0" text="요청시간" />
+                                    <TableColumn fx:id="requestStatusColumn" prefWidth="99.0" text="상태" />
+                                    <TableColumn fx:id="requestRejectionReasonColumn" prefWidth="95.0" text="거절사유" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                        <VBox prefHeight="290.0" prefWidth="429.0" spacing="10.0">
+                            <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="본사 메뉴얼" />
+                            <TableView fx:id="headquartersProductTableView" prefHeight="270.0" prefWidth="429.0" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="hqProductIdColumn" prefWidth="58.0" text="번호" />
+                                    <TableColumn fx:id="hqProductCodeColumn" prefWidth="85.0" text="물품코드" />
+                                    <TableColumn fx:id="hqProductNameColumn" prefWidth="185.0" text="물품명" />
+                                    <TableColumn fx:id="hqPriceColumn" prefWidth="100.0" text="가격" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </items>
+                </SplitPane>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- 오른쪽: 발주 요청 + 상세 정보 -->
+            <VBox prefHeight="638.0" prefWidth="467.0" spacing="10.0" style="-fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10;" HBox.hgrow="NEVER">
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="발주 요청" />
+                <!-- 발주 요청 입력 영역 -->
+                <GridPane alignment="CENTER" hgap="10.0" maxWidth="-Infinity" prefHeight="150.0" prefWidth="493.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="상품 코드">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="productCodeField" maxWidth="-Infinity" prefHeight="35.0" prefWidth="340.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label text="상품명" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="productNameField" maxWidth="-Infinity" prefHeight="35.0" prefWidth="328.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="개수" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="quantityField" maxWidth="-Infinity" prefHeight="35.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    </children>
+                </GridPane>
+
+                <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="395.0" spacing="10.0">
+                    <Button contentDisplay="CENTER" onAction="#resetForm" prefHeight="32.0" prefWidth="52.0" text="리셋" />
+                    <Button contentDisplay="CENTER" onAction="#addItemToRequest" prefHeight="32.0" prefWidth="52.0" text="추가" />
+                </HBox>
+
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="요청할 상품 목록" />
+                <TableView fx:id="requestItemsTableView" prefHeight="150.0" prefWidth="350.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="reqProductCodeColumn" prefWidth="100.0" text="상품코드" />
+                        <TableColumn fx:id="reqProductNameColumn" prefWidth="150.0" text="상품명" />
+                        <TableColumn fx:id="reqQuantityColumn" prefWidth="100.0" text="개수" />
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="400.0" spacing="10.0">
+                    <Button contentDisplay="CENTER" onAction="#sendStockRequest" prefHeight="32.0" prefWidth="52.0" text="요청" />
+                    <Button contentDisplay="CENTER" onAction="#confirmStockRequest" prefHeight="32.0" prefWidth="52.0" text="입고" />
+                </HBox>
+
+                <!-- ✅ 추가: 요청 상세 정보 영역 -->
+                <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="요청 상세 정보" />
+                <GridPane alignment="CENTER" hgap="10.0" prefWidth="467.0" vgap="10.0">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="300.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="매장명" />
+                        <TextField fx:id="detailStoreNameField" editable="false" GridPane.columnIndex="1" />
+                        <Label text="요청일자" GridPane.rowIndex="1" />
+                        <TextField fx:id="detailRequestedDateField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="상품 목록" GridPane.rowIndex="2" />
+                        <TextField fx:id="detailProductNameField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="상태" GridPane.rowIndex="3" />
+                        <TextField fx:id="detailStatusField" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="거절 사유" GridPane.rowIndex="4" />
+                        <TextArea fx:id="detailRejectionReasonArea" editable="false" prefHeight="60.0" prefWidth="270.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </children>
+                </GridPane>
+            </VBox>
+        </children>
+    </HBox>
+</AnchorPane>
